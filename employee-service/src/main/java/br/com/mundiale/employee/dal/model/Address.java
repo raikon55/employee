@@ -7,8 +7,8 @@ import java.io.Serializable;
 
 @Data
 @Entity
+@Table
 @Access(AccessType.FIELD)
-@Table(catalog = "employee", name = "addresses")
 public class Address implements Serializable {
 
     private static final long serialVersionUID = 5949582591051590075L;
