@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>br.com.mundiale</groupId>
         <artifactId>employee</artifactId>
+        <groupId>br.com.mundiale</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
@@ -51,10 +51,16 @@
         </dependency>
 
         <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.200</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.20</version>
-            <scope>runtime</scope>
         </dependency>
 
         <dependency>
@@ -79,7 +85,6 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.12</version>
-            <scope>provided</scope>
         </dependency>
 
         <dependency>
@@ -87,6 +92,12 @@
             <artifactId>junit-jupiter</artifactId>
             <version>5.6.2</version>
             <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>1.3.1.Final</version>
         </dependency>
 
     </dependencies>
