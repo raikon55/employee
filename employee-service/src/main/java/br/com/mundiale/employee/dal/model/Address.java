@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 @Data
 @Entity
-@Table
+@Table(name = "address")
 @Access(AccessType.FIELD)
 public class Address implements Serializable {
 

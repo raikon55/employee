@@ -10,7 +10,7 @@ import java.io.Serializable;
 
 @Data
 @Entity
-@Table
+@Table(name = "employee")
 @Access(AccessType.FIELD)
 public class Employee implements Serializable {
 
