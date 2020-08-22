@@ -15,34 +15,32 @@ public class EmployeeController {
 
     @Autowired
     private EmployeeService employeeService;
-    @Autowired
-    private EmployeeMapper employeeMapper;
 
     @PostMapping
     public EmployeeResponse post(@RequestBody EmployeeRequest employeeRequest) {
-        Employee employee = this.employeeMapper.of(employeeRequest);
-        return this.employeeMapper.toResponse(this.employeeService.getOrCreate(employee));
+        Employee employee = EmployeeMapper.of(employeeRequest);
+        return EmployeeMapper.toResponse(this.employeeService.getOrCreate(employee));
     }
 
     @GetMapping("/{id}")
     public EmployeeResponse findById(@PathVariable("id") Long id) throws NotFoundException {
-        return this.employeeMapper.toResponse(this.employeeService.getById(id));
+        return EmployeeMapper.toResponse(this.employeeService.getById(id));
     }
 
     @GetMapping("/name/{name}")
     public EmployeeResponse findByName(@PathVariable("name") String name) throws NotFoundException {
-        return this.employeeMapper.toResponse(this.employeeService.getByName(name));
+        return EmployeeMapper.toResponse(this.employeeService.getByName(name));
     }
 
     @GetMapping("/cpf/{cpf}")
     public EmployeeResponse findByCpf(@PathVariable("cpf") String cpf) throws NotFoundException {
-        return this.employeeMapper.toResponse(this.employeeService.getByCpf(cpf));
+        return EmployeeMapper.toResponse(this.employeeService.getByCpf(cpf));
     }
 
     @PutMapping("/{id}")
     public EmployeeResponse put(@PathVariable("id") Long id, @RequestBody EmployeeRequest employeeRequest) throws NotFoundException {
         try {
-            return this.employeeMapper.toResponse(this.employeeService.update(id, this.employeeMapper.of(employeeRequest)));
+            return EmployeeMapper.toResponse(this.employeeService.update(id, EmployeeMapper.of(employeeRequest)));
         } catch (NotFoundException exc) {
             throw new NotFoundException("Employee not found!");
         }
