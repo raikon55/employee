@@ -9,4 +9,8 @@ public interface AddressService {
     Address getById(Integer id);
 
     Address getByZipCode(String zipCode);
+
+    Address update(Integer id, Address updatedAddress);
+
+    void delete(Integer id);
 }

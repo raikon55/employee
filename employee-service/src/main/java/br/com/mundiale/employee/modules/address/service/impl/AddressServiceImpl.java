@@ -39,6 +39,21 @@ public class AddressServiceImpl implements AddressService {
                 .orElseThrow(() -> new NotFoundException("Address not found!"));
     }
 
+    @SneakyThrows
+    public Address update(Integer id, Address updatedAddress) {
+        final var address = this.validateZipCode(updatedAddress);
+        return this.addressRepository.findById(id)
+                .map(address1 -> {
+                    address.setId(address1.getId());
+                    return this.addressRepository.save(address);
+                })
+                .orElseThrow(() -> new NotFoundException("Address not found!"));
+    }
+
+    public void delete(Integer id) {
+        this.addressRepository.deleteById(id);
+    }
+
     private Address validateZipCode(Address address) {
 
         HttpRequest request = HttpRequest.newBuilder(URI.create("http://viacep.com.br/ws/" + address.getZipCode() + "/json/"))

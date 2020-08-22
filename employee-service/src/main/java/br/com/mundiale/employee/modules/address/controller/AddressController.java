@@ -6,6 +6,7 @@ import br.com.mundiale.employee.json.address.response.AddressResponse;
 import br.com.mundiale.employee.modules.address.mapper.AddressMapper;
 import br.com.mundiale.employee.modules.address.service.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -29,5 +30,16 @@ public class AddressController {
     @GetMapping("/zipcode/{zipCode}")
     public AddressResponse getByZipCode(@PathVariable("zipCode") String zipCode) {
         return AddressMapper.toResponse(this.addressService.getByZipCode(zipCode));
+    }
+
+    @PutMapping("/{id}")
+    public AddressResponse update(@PathVariable("id") Integer id, @RequestBody AddressRequest addressUpdate) {
+        return AddressMapper.toResponse(this.addressService.update(id, AddressMapper.of(addressUpdate)));
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void delete(@PathVariable("id") Integer id) {
+        this.addressService.delete(id);
     }
 }
