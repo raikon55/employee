@@ -6,11 +6,11 @@
 
     <parent>
         <artifactId>employee</artifactId>
-        <groupId>br.com.mundiale</groupId>
+        <groupId>org.raikon</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <groupId>br.com.mundiale.employee</groupId>
+    <groupId>org.raikon.employee</groupId>
     <artifactId>employee-json</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>employee-json</name>
