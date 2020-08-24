@@ -1,24 +1,13 @@
-DROP TABLE IF EXISTS employee;
-DROP TABLE IF EXISTS address;
+INSERT INTO address (street, zipcode, number, neighborhood, city, state)
+    VALUES ('Rua Adauto Feitosa', '31260340', 1, 'Dona Clara', 'Belo Horizonte', 'MG');
+INSERT INTO address (street, zipcode, number, neighborhood, city, state)
+    VALUES ('Rua Crisogno Goulart', '31340260', 1, 'Paqueta', 'Belo Horizonte', 'MG');
+INSERT INTO address (street, zipcode, number, neighborhood, city, state)
+    VALUES ('Rua Uba', '31110110', 1, 'Colegio Batista', 'Belo Horizonte', 'MG');
 
-CREATE TABLE address (
-	id INT NOT NULL AUTO_INCREMENT,
-    street VARCHAR(50),
-    zipcode VARCHAR(9) NOT NULL,
-    number SMALLINT NOT NULL,
-    neighborhood VARCHAR(50),
-    city VARCHAR(100),
-    state VARCHAR(3),
-    PRIMARY KEY (id)
-);
-
-CREATE TABLE employee (
-	id BIGINT NOT NULL AUTO_INCREMENT,
-    name VARCHAR(50) NOT NULL,
-    cpf VARCHAR(12) NOT NULL UNIQUE,
-    role ENUM('INTERN', 'JUNIOR', 'PLAN', 'SENIOR') NOT NULL,
-    salary_base FLOAT,
-    id_address INT NOT NULL,
-    PRIMARY KEY(id),
-    FOREIGN KEY (id_address) REFERENCES address(id)
-);
+INSERT INTO employee (name, cpf, role, salary_base, id_address)
+    VALUES ('Urruin', '20956632254', 'INTERN', 1000.0, 1);
+INSERT INTO employee (name, cpf, role, salary_base, id_address)
+    VALUES ('Dolerfe', '46259637292', 'PLAN', 1000.0, 2);
+INSERT INTO employee (name, cpf, role, salary_base, id_address)
+    VALUES ('Cuxu', '96962829230', 'SENIOR', 1000.0, 3);
