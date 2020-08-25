@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+
+package org.raikon.grpc.address;
+
+message AddressRequest {
+    string zipcode = 1;
+    int32 number = 2;
+}
+
+message AddressResponse {
+    int32 id = 1;
+    string zipcode = 2;
+    int32 number = 3;
+    string city = 4;
+    string state = 5;
+    string street = 6;
+    string neighborhood = 7;
+}
+
+service AddressService {
+    rpc GetAddress(AddressRequest) returns (AddressResponse);
+}
