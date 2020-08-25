@@ -12,11 +12,7 @@ public class AddressMapper {
     public static Address of(AddressRequest addressRequest) {
         final var address = new Address();
         address.setNumber(addressRequest.getNumber());
-        address.setStreet(addressRequest.getStreet());
         address.setZipCode(addressRequest.getZipCode());
-        address.setState(addressRequest.getState());
-        address.setCity(addressRequest.getCity());
-        address.setNeighborhood(addressRequest.getNeighborhood());
 
         return address;
     }
