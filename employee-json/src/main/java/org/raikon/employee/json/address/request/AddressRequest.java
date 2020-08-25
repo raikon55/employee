@@ -15,9 +15,4 @@ public class AddressRequest implements Serializable {
 
     @Pattern(regexp = "\\d{8}")
     private String zipCode;
-
-    private String city;
-    private String state;
-    private String street;
-    private String neighborhood;
 }

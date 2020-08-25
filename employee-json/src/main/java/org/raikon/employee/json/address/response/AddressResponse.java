@@ -13,4 +13,8 @@ public class AddressResponse extends AddressRequest {
     private static final long serialVersionUID = 3119837193500406982L;
 
     private Integer id;
+    private String city;
+    private String state;
+    private String street;
+    private String neighborhood;
 }
