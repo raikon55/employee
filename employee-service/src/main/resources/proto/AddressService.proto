@@ -4,12 +4,12 @@ option java_multiple_files = true;
 
 package org.raikon.grpc.address;
 
-message AddressRequest {
+message AddressGrpcRequest {
     string zipcode = 1;
     int32 number = 2;
 }
 
-message AddressResponse {
+message AddressGrpcResponse {
     int32 id = 1;
     string zipcode = 2;
     int32 number = 3;
@@ -19,6 +19,6 @@ message AddressResponse {
     string neighborhood = 7;
 }
 
-service AddressService {
-    rpc GetAddress(AddressRequest) returns (AddressResponse);
+service AddressController {
+    rpc create(AddressGrpcRequest) returns (AddressGrpcResponse);
 }
