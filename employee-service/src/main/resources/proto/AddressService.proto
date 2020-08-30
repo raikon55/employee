@@ -20,5 +20,5 @@ message AddressGrpcResponse {
 }
 
 service AddressController {
-    rpc create(AddressGrpcRequest) returns (AddressGrpcResponse);
+    rpc create(AddressGrpcRequest) returns (AddressGrpcResponse) {};
 }
