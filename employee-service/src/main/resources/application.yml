@@ -1,7 +1,10 @@
+debug: true
+
 server:
   port: 8086
-
-debug: true
+grpc:
+  server:
+    port: 8087
 
 spring:
   application:
@@ -12,7 +15,7 @@ spring:
 
     hibernate:
       hbm2ddl:
-        auto: update
+        auto: validate
 
   datasource:
     platform: h2
