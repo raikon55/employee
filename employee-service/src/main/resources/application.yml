@@ -23,3 +23,13 @@ spring:
     url: jdbc:h2:mem:testdb
     driverClassName: org.h2.Driver
     initialization-mode: always
+
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8090/eureka
+  instance:
+    hostname: localhost
+    nonSecurePort: 8087
