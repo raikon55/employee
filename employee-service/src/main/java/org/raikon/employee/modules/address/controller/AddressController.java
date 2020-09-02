@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RestController
 @RequestMapping("/address")
 public class AddressController {
@@ -28,8 +31,10 @@ public class AddressController {
     }
 
     @GetMapping("/zipcode/{zipCode}")
-    public AddressResponse getByZipCode(@PathVariable("zipCode") String zipCode) {
-        return AddressMapper.toResponse(this.addressService.getByZipCode(zipCode));
+    public List<AddressResponse> getByZipCode(@PathVariable("zipCode") String zipCode) {
+        return this.addressService.getByZipCode(zipCode).parallelStream()
+                .map(AddressMapper::toResponse)
+                .collect(Collectors.toList());
     }
 
     @PutMapping("/{id}")

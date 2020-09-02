@@ -35,9 +35,8 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @SneakyThrows
-    public Address getByZipCode(String zipCode) {
-        return this.addressRepository.findByZipCode(zipCode)
-                .orElseThrow(() -> new NotFoundException("Address not found!"));
+    public List<Address> getByZipCode(String zipCode) {
+        return this.addressRepository.findByZipCode(zipCode);
     }
 
     @SneakyThrows
