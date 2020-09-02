@@ -30,6 +30,8 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <java.version>11</java.version>
+        <application.version>0.0.1-SNAPSHOT</application.version>
+        <spring.boot.version>2.3.3</spring.boot.version>
     </properties>
 
     <dependencyManagement>
@@ -37,13 +39,13 @@
             <dependency>
                 <groupId>org.raikon.employee</groupId>
                 <artifactId>employee-json</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
+                <version>${application.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.raikon.employee</groupId>
                 <artifactId>employee-service</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
+                <version>${application.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -54,7 +56,7 @@
                 <plugin>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
-                    <version>2.2.7.RELEASE</version>
+                    <version>${spring.boot.version}</version>
                     <configuration>
                         <mainClass>EmployeeApplication</mainClass>
                     </configuration>

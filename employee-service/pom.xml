@@ -23,7 +23,8 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <java.version>11</java.version>
-
+        <application.version>0.0.1-SNAPSHOT</application.version>
+        <spring.boot.version>2.3.3.RELEASE</spring.boot.version>
         <grpc.version>1.31.1</grpc.version>
         <protoc.version>3.12.0</protoc.version>
     </properties>
@@ -32,25 +33,31 @@
         <dependency>
             <groupId>org.raikon.employee</groupId>
             <artifactId>employee-json</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>${application.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
-            <version>2.2.7.RELEASE</version>
+            <version>${spring.boot.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <version>2.2.7.RELEASE</version>
+            <version>${spring.boot.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
             <version>5.2.6.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+            <version>2.2.4.RELEASE</version>
         </dependency>
 
         <dependency>
