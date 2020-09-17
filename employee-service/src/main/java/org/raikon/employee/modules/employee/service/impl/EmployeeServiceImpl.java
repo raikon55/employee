@@ -20,14 +20,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee getOrCreate(Employee employee) {
-        IntFunction<Employee> validateAddress = idAddress -> {
-            employee.setAddress(this.addressService.getById(idAddress));
-            return employee;
-        };
-
-        return this.repository.findByCpf(
-            validateAddress.apply(employee.getAddress().getId()).getCpf()
-        ).orElseGet(() -> this.repository.save(employee));
+        return this.repository.findByCpf(employee.getCpf())
+                .orElseGet(() -> this.repository.save(employee));
     }
 
     @Override
