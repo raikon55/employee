@@ -8,6 +8,9 @@ import org.raikon.employee.modules.address.mapper.AddressMapper;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class EmployeeMapper {
 
@@ -19,7 +22,7 @@ public class EmployeeMapper {
 
         Address address = new Address();
         address.setId(employeeRequest.getIdAddress());
-        employee.setAddress(address);
+        employee.setAddress(List.of(address));
 
         return employee;
     }
@@ -30,7 +33,10 @@ public class EmployeeMapper {
         employeeResponse.setCpf(employee.getCpf());
         employeeResponse.setName(employee.getName());
         employeeResponse.setActualRole(employee.getRole());
-        employeeResponse.setAddressResponse(AddressMapper.toResponse(employee.getAddress()));
+        employeeResponse.setAddressResponse(employee.getAddress()
+                .stream()
+                .map(AddressMapper::toResponse)
+                .collect(Collectors.toList()));
 
         return employeeResponse;
     }
