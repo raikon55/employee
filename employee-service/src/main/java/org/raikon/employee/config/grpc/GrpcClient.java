@@ -1,6 +1,5 @@
 package org.raikon.employee.config.grpc;
 
-import com.google.common.util.concurrent.ListenableFuture;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import org.raikon.grpc.address.AddressControllerGrpc;
