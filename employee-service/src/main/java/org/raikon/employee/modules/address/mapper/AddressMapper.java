@@ -1,12 +1,11 @@
 package org.raikon.employee.modules.address.mapper;
 
-import org.raikon.employee.dal.model.Address;
+import org.raikon.employee.dao.Address;
 import org.raikon.employee.json.address.request.AddressRequest;
 import org.raikon.employee.json.address.response.AddressResponse;
+
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import org.raikon.grpc.address.AddressGrpcRequest;
-import org.raikon.grpc.address.AddressGrpcResponse;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class AddressMapper {
@@ -15,14 +14,6 @@ public class AddressMapper {
         final var address = new Address();
         address.setNumber(addressRequest.getNumber());
         address.setZipCode(addressRequest.getZipCode());
-
-        return address;
-    }
-
-    public static Address ofGrpc(AddressGrpcRequest addressGrpcRequest) {
-        final var address = new Address();
-        address.setNumber((short) addressGrpcRequest.getNumber());
-        address.setZipCode(addressGrpcRequest.getZipcode());
 
         return address;
     }
@@ -38,17 +29,5 @@ public class AddressMapper {
         addressResponse.setNeighborhood(address.getNeighborhood());
 
         return addressResponse;
-    }
-
-    public static AddressGrpcResponse toGrpcResponse(Address address) {
-        return AddressGrpcResponse.newBuilder()
-                .setId(address.getId())
-                .setCity(address.getCity())
-                .setState(address.getState())
-                .setNumber(address.getNumber())
-                .setStreet(address.getStreet())
-                .setZipcode(address.getZipCode())
-                .setNeighborhood(address.getNeighborhood())
-                .build();
     }
 }

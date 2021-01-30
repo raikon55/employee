@@ -1,7 +1,6 @@
 package org.raikon.employee.modules.address.service.impl;
 
-import org.raikon.employee.dal.model.Address;
-import org.raikon.employee.dal.repository.AddressRepository;
+import org.raikon.employee.dao.Address;
 import org.raikon.employee.modules.address.service.AddressService;
 import javassist.NotFoundException;
 import lombok.SneakyThrows;
@@ -20,8 +19,11 @@ import java.util.Map;
 @Service
 public class AddressServiceImpl implements AddressService {
 
-    @Autowired
-    private AddressRepository addressRepository;
+    private final AddressRepository addressRepository;
+
+    protected AddressServiceImpl(AddressRepository addressRepository) {
+        this.addressRepository = addressRepository;
+    }
 
     public Address create(Address address) {
         Address fullAddress = this.validateZipCode(address);

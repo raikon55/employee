@@ -1,6 +1,6 @@
 package org.raikon.employee.fake;
 
-import org.raikon.employee.dal.model.Employee;
+import org.raikon.employee.dao.Employee;
 import org.raikon.employee.enums.Role;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;

@@ -1,23 +1,33 @@
 package org.raikon.employee.modules.address.controller;
 
-import org.raikon.employee.dal.model.Address;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.raikon.employee.dao.Address;
 import org.raikon.employee.json.address.request.AddressRequest;
 import org.raikon.employee.json.address.response.AddressResponse;
 import org.raikon.employee.modules.address.mapper.AddressMapper;
 import org.raikon.employee.modules.address.service.AddressService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.stream.Collectors;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/address")
 public class AddressController {
 
-    @Autowired
-    private AddressService addressService;
+    private final AddressService addressService;
+
+    protected AddressController(AddressService addressService) {
+        this.addressService = addressService;
+    }
 
     @PostMapping
     public AddressResponse create(@RequestBody AddressRequest addressRequest) {

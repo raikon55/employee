@@ -1,6 +1,6 @@
 package org.raikon.employee.fake;
 
-import org.raikon.employee.dal.model.Address;
+import org.raikon.employee.dao.Address;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 

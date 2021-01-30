@@ -1,6 +1,6 @@
 package org.raikon.employee.modules.address.service;
 
-import org.raikon.employee.dal.model.Address;
+import org.raikon.employee.dao.Address;
 
 import java.util.List;
 

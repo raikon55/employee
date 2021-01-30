@@ -1,6 +1,6 @@
 package org.raikon.employee.modules.employee.service;
 
-import org.raikon.employee.dal.model.Employee;
+import org.raikon.employee.dao.Employee;
 import javassist.NotFoundException;
 
 public interface EmployeeService {

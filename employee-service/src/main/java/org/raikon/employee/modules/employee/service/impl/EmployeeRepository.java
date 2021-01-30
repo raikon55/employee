@@ -1,6 +1,6 @@
-package org.raikon.employee.dal.repository;
+package org.raikon.employee.modules.employee.service.impl;
 
-import org.raikon.employee.dal.model.Employee;
+import org.raikon.employee.dao.Employee;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;

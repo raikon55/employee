@@ -1,4 +1,4 @@
-package org.raikon.employee.dal.model;
+package org.raikon.employee.dao;
 
 import org.raikon.employee.enums.Role;
 import lombok.Data;

@@ -1,7 +1,7 @@
 package org.raikon.employee.modules.employee.mapper;
 
-import org.raikon.employee.dal.model.Address;
-import org.raikon.employee.dal.model.Employee;
+import org.raikon.employee.dao.Address;
+import org.raikon.employee.dao.Employee;
 import org.raikon.employee.json.employee.request.EmployeeRequest;
 import org.raikon.employee.json.employee.response.EmployeeResponse;
 import org.raikon.employee.modules.address.mapper.AddressMapper;
