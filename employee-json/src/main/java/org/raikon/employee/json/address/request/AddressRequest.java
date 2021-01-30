@@ -13,6 +13,6 @@ public class AddressRequest implements Serializable {
     @Pattern(regexp = "\\d+")
     private Short number;
 
-    @Pattern(regexp = "\\d{8}")
+    @Pattern(regexp = "\\d{5}-\\d{3}")
     private String zipCode;
 }
