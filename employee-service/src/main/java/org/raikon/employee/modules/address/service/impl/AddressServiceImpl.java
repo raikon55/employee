@@ -1,13 +1,5 @@
 package org.raikon.employee.modules.address.service.impl;
 
-import org.raikon.employee.dao.Address;
-import org.raikon.employee.modules.address.service.AddressService;
-import javassist.NotFoundException;
-import lombok.SneakyThrows;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.json.JacksonJsonParser;
-import org.springframework.stereotype.Service;
-
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -15,6 +7,14 @@ import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Map;
+
+import org.raikon.employee.dao.Address;
+import org.raikon.employee.modules.address.service.AddressService;
+import org.springframework.boot.json.JacksonJsonParser;
+import org.springframework.stereotype.Service;
+
+import javassist.NotFoundException;
+import lombok.SneakyThrows;
 
 @Service
 public class AddressServiceImpl implements AddressService {
