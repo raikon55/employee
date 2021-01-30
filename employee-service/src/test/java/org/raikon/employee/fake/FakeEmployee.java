@@ -5,6 +5,8 @@ import org.raikon.employee.enums.Role;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class FakeEmployee {
 
@@ -14,7 +16,7 @@ public class FakeEmployee {
         employee.setName("Lorem Ipsum");
         employee.setRole(Role.SENIOR);
         employee.setCpf("12345678910");
-        employee.setAddress(FakeAddress.generate());
+        employee.setAddress(List.of(FakeAddress.generate()));
 
         return employee;
     }

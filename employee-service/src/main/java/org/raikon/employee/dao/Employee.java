@@ -1,5 +1,6 @@
 package org.raikon.employee.dao;
 
+import org.hibernate.FetchMode;
 import org.raikon.employee.enums.Role;
 import lombok.Data;
 import org.hibernate.validator.constraints.br.CPF;
@@ -7,6 +8,7 @@ import org.hibernate.validator.constraints.br.CPF;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 @Entity
@@ -36,9 +38,9 @@ public class Employee implements Serializable {
     @Column(name = "salary_base")
     private Float salaryBase = 1000.0F;
 
-    @OneToOne
+    @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_address", referencedColumnName = "id")
-    private Address address;
+    private List<Address> address;
 
     public void setRole(Role role) {
         this.role = role;

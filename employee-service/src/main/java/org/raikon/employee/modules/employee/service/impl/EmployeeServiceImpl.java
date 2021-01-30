@@ -1,9 +1,6 @@
 package org.raikon.employee.modules.employee.service.impl;
 
-import java.util.function.IntFunction;
-
 import org.raikon.employee.dao.Employee;
-import org.raikon.employee.modules.address.service.AddressService;
 import org.raikon.employee.modules.employee.service.EmployeeService;
 import org.springframework.stereotype.Service;
 
@@ -13,24 +10,15 @@ import javassist.NotFoundException;
 public class EmployeeServiceImpl implements EmployeeService {
 
     private final EmployeeRepository employeeRepository;
-    private final AddressService addressService;
 
-    protected EmployeeServiceImpl(EmployeeRepository employeeRepository,
-                                  AddressService addressService) {
+    protected EmployeeServiceImpl(EmployeeRepository employeeRepository) {
         this.employeeRepository = employeeRepository;
-        this.addressService = addressService;
     }
 
     @Override
     public Employee getOrCreate(Employee employee) {
-        IntFunction<Employee> validateAddress = idAddress -> {
-            employee.setAddress(this.addressService.getById(idAddress));
-            return employee;
-        };
-
-        return this.employeeRepository.findByCpf(
-            validateAddress.apply(employee.getAddress().getId()).getCpf()
-        ).orElseGet(() -> this.employeeRepository.save(employee));
+        return this.employeeRepository.findByCpf(employee.getCpf())
+                .orElseGet(() -> this.employeeRepository.save(employee));
     }
 
     @Override

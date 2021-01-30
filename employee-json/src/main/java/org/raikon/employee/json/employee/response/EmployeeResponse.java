@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
+import java.util.List;
+
 @Data
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
@@ -16,5 +18,5 @@ public class EmployeeResponse extends EmployeeRequest {
     private static final long serialVersionUID = -8417554719562838650L;
 
     private Long id;
-    private AddressResponse addressResponse;
+    private List<AddressResponse> addressResponse;
 }
