@@ -54,7 +54,7 @@ public class AddressController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public void delete(@PathVariable("id") Integer id) {
-        this.addressService.delete(id);
+    public AddressResponse delete(@PathVariable("id") Integer id) {
+        return AddressMapper.toResponse(this.addressService.delete(id));
     }
 }

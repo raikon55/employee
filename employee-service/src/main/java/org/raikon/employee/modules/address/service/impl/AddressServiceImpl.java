@@ -5,6 +5,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
@@ -52,8 +53,14 @@ public class AddressServiceImpl implements AddressService {
                 .orElseThrow(() -> new NotFoundException("Address not found!"));
     }
 
-    public void delete(Integer id) {
-        this.addressRepository.deleteById(id);
+    @SneakyThrows
+    public Address delete(Integer id) {
+        return this.addressRepository.findById(id)
+                .map(address -> {
+                    address.setDeletedAt(LocalDateTime.now());
+                    return this.addressRepository.save(address);
+                })
+                .orElseThrow(() -> new NotFoundException("Address not found!"));
     }
 
     private Address validateZipCode(Address address) {

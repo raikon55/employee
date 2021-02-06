@@ -32,7 +32,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         newEmployee.setRole(employee.getRole());
         newEmployee.setName(employee.getName());
         newEmployee.setCpf(employee.getCpf());
-        newEmployee.setAddress(employee.getAddress());
         return this.employeeRepository.save(newEmployee);
     }
 

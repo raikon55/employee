@@ -1,6 +1,7 @@
 package org.raikon.employee.dao;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.Access;
@@ -36,16 +37,16 @@ public class Employee implements Serializable {
     private Long id;
 
     @NotNull
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
 
     @CPF
     @NotNull
-    @Column(name = "cpf")
+    @Column(name = "cpf", nullable = false, unique = true)
     private String cpf;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "role", columnDefinition = "ENUM('INTERN', 'JUNIOR', 'PLAN', 'SENIOR')")
+    @Column(name = "role", columnDefinition = "ENUM('INTERN', 'JUNIOR', 'PLAN', 'SENIOR')", nullable = false)
     private Role role;
 
     @Column(name = "salary_base")
@@ -54,6 +55,15 @@ public class Employee implements Serializable {
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_address", referencedColumnName = "id")
     private List<Address> address;
+
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private LocalDateTime createdAt = LocalDateTime.now();
+
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
+
+    @Column(name = "deleted_at")
+    private LocalDateTime deletedAt;
 
     public void setRole(Role role) {
         this.role = role;

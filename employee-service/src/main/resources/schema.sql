@@ -9,6 +9,9 @@ CREATE TABLE address (
     neighborhood VARCHAR(50),
     city VARCHAR(100),
     state VARCHAR(3),
+    created_at DATETIME NOT NULL,
+    updated_at DATETIME,
+    deleted_at DATETIME,
     PRIMARY KEY (id)
 );
 
@@ -18,7 +21,10 @@ CREATE TABLE employee (
     cpf VARCHAR(12) NOT NULL UNIQUE,
     role ENUM('INTERN', 'JUNIOR', 'PLAN', 'SENIOR') NOT NULL,
     salary_base FLOAT,
-    id_address INT NOT NULL,
+    id_address INT,
+    created_at DATETIME NOT NULL,
+    updated_at DATETIME,
+    deleted_at DATETIME,
     PRIMARY KEY(id),
     FOREIGN KEY (id_address) REFERENCES address(id)
 );

@@ -12,10 +12,12 @@ import java.util.Optional;
 public interface EmployeeRepository extends CrudRepository<Employee, Long> {
 
     @Query(value = "FROM Employee e " +
-            "WHERE e.name = :name ")
+            "WHERE e.name = :name " +
+            "AND e.deletedAt IS NULL")
     Optional<Employee> findByName(@Param("name") String name);
 
     @Query(value = "FROM Employee e " +
-            "WHERE e.cpf = :cpf ")
+            "WHERE e.cpf = :cpf " +
+            "AND e.deletedAt IS NULL")
     Optional<Employee> findByCpf(@Param("cpf") String cpf);
 }
