@@ -1,5 +1,7 @@
 package org.raikon.employee.modules.employee.controller;
 
+import java.util.Map;
+
 import org.raikon.employee.dao.Employee;
 import org.raikon.employee.json.employee.request.EmployeeRequest;
 import org.raikon.employee.json.employee.response.EmployeeResponse;
@@ -24,6 +26,11 @@ public class EmployeeController {
 
     protected EmployeeController(EmployeeService employeeService) {
         this.employeeService = employeeService;
+    }
+
+    @GetMapping
+    public Map<String, String> test() {
+        return Map.of("Hello", "World!");
     }
 
     @PostMapping

@@ -7,8 +7,6 @@ Project dependencies:
 * Spring Boot
 * Hibernate
 * H2 embedded database
-* gRPC protocol
-* Eureka client
 
 Dependencies managed by Maven. Execute it using:
 
