@@ -8,6 +8,7 @@ import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.raikon.employee.dao.Address;
 import org.raikon.employee.modules.address.service.AddressService;
@@ -26,33 +27,41 @@ public class AddressServiceImpl implements AddressService {
         this.addressRepository = addressRepository;
     }
 
+    @Override
+    @SneakyThrows
     public Address create(Address address) {
-        Address fullAddress = this.validateZipCode(address);
-        return this.addressRepository.save(fullAddress);
+        return this.validateZipCode(address.getZipCode())
+                .map(this.addressRepository::save)
+                .orElseThrow(() -> new NotFoundException("Can't retrieve an address from this zip code " + address.getZipCode()));
     }
 
+    @Override
     @SneakyThrows
     public Address getById(Integer id) {
         return this.addressRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Address not found!"));
     }
 
+    @Override
     @SneakyThrows
     public List<Address> getByZipCode(String zipCode) {
         return this.addressRepository.findByZipCode(zipCode);
     }
 
+    @Override
     @SneakyThrows
     public Address update(Integer id, Address updatedAddress) {
-        final var address = this.validateZipCode(updatedAddress);
         return this.addressRepository.findById(id)
-                .map(address1 -> {
-                    address.setId(address1.getId());
-                    return this.addressRepository.save(address);
+                .map(addressToUpdate -> {
+                    final var address = this.validateZipCode(updatedAddress.getZipCode()).orElse(addressToUpdate);
+                    address.setId(addressToUpdate.getId());
+                    return address;
                 })
+                .map(this.addressRepository::save)
                 .orElseThrow(() -> new NotFoundException("Address not found!"));
     }
 
+    @Override
     @SneakyThrows
     public Address delete(Integer id) {
         return this.addressRepository.findById(id)
@@ -63,21 +72,28 @@ public class AddressServiceImpl implements AddressService {
                 .orElseThrow(() -> new NotFoundException("Address not found!"));
     }
 
-    private Address validateZipCode(Address address) {
+    private Optional<Address> validateZipCode(String zipCode) {
 
-        HttpRequest request = HttpRequest.newBuilder(URI.create("http://viacep.com.br/ws/" + address.getZipCode() + "/json/"))
+        HttpRequest request = HttpRequest.newBuilder(URI.create("http://viacep.com.br/ws/" + zipCode + "/json/"))
                 .build();
 
-        HttpClient.newHttpClient().sendAsync(request, HttpResponse.BodyHandlers.ofString(StandardCharsets.UTF_8))
-                .thenApply(HttpResponse::body)
-                .thenAccept(jsonResponse -> {
-                    Map<String, Object> jsonMap = new JacksonJsonParser().parseMap(jsonResponse);
-                    address.setStreet(jsonMap.get("logradouro").toString());
-                    address.setNeighborhood(jsonMap.get("bairro").toString());
-                    address.setCity(jsonMap.get("localidade").toString());
-                    address.setState(jsonMap.get("uf").toString());
-                })
-                .join();
+        return Optional.ofNullable(
+                HttpClient.newHttpClient()
+                        .sendAsync(request, HttpResponse.BodyHandlers.ofString(StandardCharsets.UTF_8))
+                        .thenApplyAsync(HttpResponse::body)
+                        .thenApplyAsync(this::buildAddressFromJson)
+                        .join()
+                );
+    }
+
+    private Address buildAddressFromJson(String jsonResponse) {
+        final var address = new Address();
+        Map<String, Object> jsonMap = new JacksonJsonParser().parseMap(jsonResponse);
+
+        address.setStreet(jsonMap.get("logradouro").toString());
+        address.setNeighborhood(jsonMap.get("bairro").toString());
+        address.setCity(jsonMap.get("localidade").toString());
+        address.setState(jsonMap.get("uf").toString());
 
         return address;
     }
